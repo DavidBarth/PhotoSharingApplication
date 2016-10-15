@@ -12,7 +12,7 @@ namespace PhotoSharingTests.Doubles
     {
 
 
-        //This object is a keyed collection we use to mock an 
+        //This mock object is a keyed collection we use to mock an 
         //entity framework context in memory
         SetMap _map = new SetMap();
 
