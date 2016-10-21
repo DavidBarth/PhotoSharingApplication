@@ -50,6 +50,18 @@ namespace PhotoSharingApplication.Controllers
             return PartialView("_PhotoGallery", photos);
         }
 
+
+        public ActionResult DisplayByTitle(string title)
+        {
+            Photo photo = context.FindPhotoByTitle(title);
+            if (photo == null)
+            {
+                return HttpNotFound();
+            }
+            return View("Display", photo);
+        }
+
+
         public ActionResult Display(int id)
         {
             Photo photo = context.FindPhotoById(id);

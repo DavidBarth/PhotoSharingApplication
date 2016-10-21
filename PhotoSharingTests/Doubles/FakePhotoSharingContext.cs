@@ -59,6 +59,14 @@ namespace PhotoSharingTests.Doubles
             return item;
         }
 
+        public Photo FindPhotoByTitle(string Title)
+        {
+            Photo photo = (from p in this.Photos
+                           where p.Title == Title
+                           select p).FirstOrDefault();
+            return photo;
+        }
+
 
         public T Delete<T>(T entity) where T : class
         {

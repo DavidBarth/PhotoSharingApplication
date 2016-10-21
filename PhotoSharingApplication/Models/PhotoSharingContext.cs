@@ -42,6 +42,14 @@ namespace PhotoSharingApplication.Models
             return Set<Comment>().Find(ID);   
         }
 
+        Photo IPhotoSharingContext.FindPhotoByTitle(string Title)
+        {
+            Photo photo = (from p in Set<Photo>()
+                           where p.Title == Title
+                           select p).FirstOrDefault();
+            return photo;
+        }
+
         T IPhotoSharingContext.Delete<T>(T entity)
         {
             return Set<T>().Remove(entity);

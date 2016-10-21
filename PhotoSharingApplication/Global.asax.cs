@@ -23,6 +23,8 @@ namespace PhotoSharingApplication
 
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+
+            //registers the routes specified in RoutConfig
             RouteConfig.RegisterRoutes(RouteTable.Routes);
         }
     }
