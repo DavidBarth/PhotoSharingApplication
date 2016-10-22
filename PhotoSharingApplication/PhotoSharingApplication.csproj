@@ -137,6 +137,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="Content\BackgroundGradient.jpg" />
+    <Content Include="Content\PhotoSharingStyles.css" />
     <Content Include="Global.asax" />
     <Content Include="Images\flower.JPG" />
     <Content Include="Images\fungi.JPG" />
