@@ -12,11 +12,14 @@
 <body>
     <div>
         <p>Welcome to Adventure Works Photo Sharing! Use this site to share your adventures.</p>
+        Menu: @Html.MvcSiteMap().Menu(false,false,true)
+        Breadcrumb Trail: @Html.MvcSiteMap().SiteMapPath()
 
         <h2>Latest Photos:</h2>
 
         @Html.Action("_PhotoGallery", "Photo", new { number = 3 })
     
     </div>
+    
 </body>
 </html>

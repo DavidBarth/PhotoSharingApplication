@@ -1,0 +1,21 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <div>
+        <h1 class ="site-page-title">Adventure Photo Sharing</h1>
+        <div class="clear-floats" />
+        <div id="topmenu">
+            @Html.MvcSiteMap().Menu(false,true,false)
+        </div>
+    </div>
+</body>
+</html>
