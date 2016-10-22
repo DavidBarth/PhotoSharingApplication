@@ -16,6 +16,13 @@
         <div id="topmenu">
             @Html.MvcSiteMap().Menu(false,true,false)
         </div>
+
+        <div id="breadcrumb">
+            @Html.MvcSiteMap().SiteMapPath()
+        </div>
+        <div>
+           @RenderBody()
+        </div>
     </div>
 </body>
 </html>

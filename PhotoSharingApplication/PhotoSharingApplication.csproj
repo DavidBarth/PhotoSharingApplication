@@ -211,6 +211,8 @@
   <ItemGroup>
     <Content Include="Mvc.sitemap" />
     <None Include="MvcSiteMapSchema.xsd" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

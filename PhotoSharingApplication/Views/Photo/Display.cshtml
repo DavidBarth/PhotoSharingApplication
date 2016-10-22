@@ -1,18 +1,10 @@
 ﻿@model PhotoSharingApplication.Models.Photo
 
 @{
-    Layout = null;
+    ViewBag.Title = Model.Title;
 }
 
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>@Model.Title</title>
-</head>
-<body>
-    <div>
          
         <h2>"@Model.Title"</h2>
 
@@ -35,6 +27,4 @@
         <p>
             @Html.ActionLink("Back to List", "Index")
         </p>
-    </div>
-</body>
-</html>
+  
