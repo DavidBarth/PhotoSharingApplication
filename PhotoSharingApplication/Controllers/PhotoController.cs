@@ -26,7 +26,7 @@ namespace PhotoSharingApplication.Controllers
 
         //
         // GET: /Photo/
-
+        //10 minute caching duration, server location
         [OutputCache(Duration=600, Location=OutputCacheLocation.Server, VaryByParam="none")]
         public ActionResult Index()
         {
