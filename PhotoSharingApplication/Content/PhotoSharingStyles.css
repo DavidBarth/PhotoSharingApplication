@@ -30,7 +30,7 @@
 
 #topmenu {
     background-color: #808080;
-    height: 45px;
+    height: 90px;
     border-radius: 10px;
 }
 
@@ -179,4 +179,9 @@
 
 #slide-show DIV.last-active-card {
     z-index: 9;
+}
+
+#slideshow-progress-bar-container {
+    margin: 5px;
+    width: 834px;
 }
