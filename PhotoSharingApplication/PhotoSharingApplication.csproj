@@ -127,6 +127,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701292144553_InitialCreate.cs" />
+    <Compile Include="Migrations\201701292144553_InitialCreate.Designer.cs">
+      <DependentUpon>201701292144553_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\IPhotoSharingContext.cs" />
     <Compile Include="Models\Photo.cs" />
@@ -223,6 +228,11 @@
     <Content Include="Views\Comment\_CommentsForPhoto.cshtml" />
     <Content Include="Views\Shared\_CreateAComment.cshtml" />
     <Content Include="Views\Photo\SlideShow.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201701292144553_InitialCreate.resx">
+      <DependentUpon>201701292144553_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
