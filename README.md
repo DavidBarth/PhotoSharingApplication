@@ -18,4 +18,4 @@ Course project from the offical Microsoft course 20486 - Developing ASP.NET MVC 
 
 - using JQuery to build progressbar
 
-- publishing to Azure 	- code first migration of DB
+- publishing to Azure 	- code first migration of DB - web app services
