@@ -1,7 +1,7 @@
 # PhotoSharingApplication
 Course project from the offical Microsoft course 20486 - Developing ASP.NET MVC 4 Web Applications
 
-# Used concepts in this application:
+# Activities and concepts in this application:
 - planing model classes, controllers and views
 - add properties to model classes
 - using data annotations
