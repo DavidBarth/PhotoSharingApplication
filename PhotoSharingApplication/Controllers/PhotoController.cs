@@ -12,18 +12,19 @@ namespace PhotoSharingApplication.Controllers
     [ValueReporter]
     public class PhotoController : Controller
     {
-        private IPhotoSharingContext context;
+        private IPhotoSharingContext _context;
 
         public PhotoController()
         {
-            context = new PhotoSharingContext();
+            _context = new PhotoSharingContext();
         }
 
         public PhotoController(IPhotoSharingContext Context)
         {
-            context = Context;
+            _context = Context;
         }
 
+       
         //
         // GET: /Photo/
         //10 minute caching duration, server location
@@ -40,11 +41,11 @@ namespace PhotoSharingApplication.Controllers
 
             if (number == 0)
             {
-                photos = context.Photos.ToList();
+                photos = _context.Photos.ToList();
             }
             else
             {
-                photos = (from p in context.Photos
+                photos = (from p in _context.Photos
                           orderby p.CreatedDate descending
                           select p).Take(number).ToList();
             }
@@ -55,7 +56,7 @@ namespace PhotoSharingApplication.Controllers
 
         public ActionResult DisplayByTitle(string title)
         {
-            Photo photo = context.FindPhotoByTitle(title);
+            Photo photo = _context.FindPhotoByTitle(title);
             if (photo == null)
             {
                 return HttpNotFound();
@@ -66,7 +67,7 @@ namespace PhotoSharingApplication.Controllers
 
         public ActionResult Display(int id)
         {
-            Photo photo = context.FindPhotoById(id);
+            Photo photo = _context.FindPhotoById(id);
             if (photo == null)
             {
                 return HttpNotFound();
@@ -97,15 +98,15 @@ namespace PhotoSharingApplication.Controllers
                     photo.PhotoFile = new byte[image.ContentLength];
                     image.InputStream.Read(photo.PhotoFile, 0, image.ContentLength);
                 }
-                context.Add<Photo>(photo);
-                context.SaveChanges();
+                _context.Add<Photo>(photo);
+                _context.SaveChanges();
                 return RedirectToAction("Index");
             }
         }
 
         public ActionResult Delete(int id)
         {
-            Photo photo = context.FindPhotoById(id);
+            Photo photo = _context.FindPhotoById(id);
             if (photo == null)
             {
                 return HttpNotFound();
@@ -117,9 +118,9 @@ namespace PhotoSharingApplication.Controllers
         [ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {
-            Photo photo = context.FindPhotoById(id);
-            context.Delete<Photo>(photo);
-            context.SaveChanges();
+            Photo photo = _context.FindPhotoById(id);
+            _context.Delete<Photo>(photo);
+            _context.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -127,7 +128,7 @@ namespace PhotoSharingApplication.Controllers
         [OutputCache(Duration = 600, Location = OutputCacheLocation.Server, VaryByParam = "id")]
         public FileContentResult GetImage(int id)
         {
-            Photo photo = context.FindPhotoById(id);
+            Photo photo = _context.FindPhotoById(id);
             if (photo != null)
             {
                 return File(photo.PhotoFile, photo.ImageMimeType);
@@ -140,7 +141,31 @@ namespace PhotoSharingApplication.Controllers
 
         public ViewResult SlideShow()
         {
-            return View("SlideShow", context.Photos.ToList());
+            return View("SlideShow", _context.Photos.ToList());
+        }
+
+
+        //return a slideshow view that is populated with the favorite photos
+        public ActionResult FavoritesSlideShow()
+        {
+            List<Photo> favPhotos = new List<Photo>();
+            List<int> favoriteIds = Session["Favorites"] as List<int>;
+            if(favoriteIds==null)
+            {
+                favoriteIds = new List<int>();    
+            }
+            Photo currentPhoto;
+
+            foreach(int currentId in favoriteIds)
+            {
+                currentPhoto = _context.FindPhotoById(currentId);
+                if (currentPhoto != null)
+                {
+                    favPhotos.Add(currentPhoto);
+                }
+            }
+
+            return View("Slideshow", favPhotos);
         }
     }
 }
