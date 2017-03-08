@@ -8,7 +8,7 @@
          
         <h2>"@Model.Title"</h2>
 
-        <img width="800" src="@Url.Action("GetImage", "Photo", new { id = Model.PhotoID })" />
+        <img width="500" src="@Url.Action("GetImage", "Photo", new { id = Model.PhotoID })" />
 
         <p>
             @Html.DisplayFor(model => model.Description)
@@ -23,7 +23,17 @@
             @Html.DisplayNameFor(model => model.CreatedDate):
             @Html.DisplayFor(model => model.CreatedDate)
         </p>
-
+        <div id="addtofavorites">
+            @Ajax.ActionLink("Add this photo to your favorites",
+            "AddFavorite",
+            "Photo",
+            new { PhotoId = Model.PhotoID },
+            new AjaxOptions { 
+                UpdateTargetId = "addtofavorites",
+                HttpMethod= "GET",
+                InsertionMode = InsertionMode.Replace
+            })
+        </div>
         <p>
             @Html.Action("_CommentsForPhoto", "Comment", new {PhotoId = Model.PhotoID})
             @Html.ActionLink("Back to List", "Index")

@@ -15,7 +15,7 @@
     type="text/javascript"></script> 
     <script src="http://ajax.aspnetcdn.com/ajax/mvc/3.0/jquery.unobtrusive-ajax.js" 
     type="text/javascript"></script> 
-    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.0/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.12.1/jquery-ui.min.js"></script>
 </head>
 <body>
     <div>
@@ -28,6 +28,12 @@
         <div id="breadcrumb">
             @Html.MvcSiteMap().SiteMapPath()
         </div>
+        @if (Session["Favorites"] != null)
+        {
+            <div id="favorites-link">
+                @Html.ActionLink("Favorite Photos", "FavoritesSlideShow", "Photo")
+            </div>
+        }
         <div>
            @RenderBody()
         </div>

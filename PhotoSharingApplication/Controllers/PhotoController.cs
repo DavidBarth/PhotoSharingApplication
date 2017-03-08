@@ -96,7 +96,9 @@ namespace PhotoSharingApplication.Controllers
                 {
                     photo.ImageMimeType = image.ContentType;
                     photo.PhotoFile = new byte[image.ContentLength];
-                    image.InputStream.Read(photo.PhotoFile, 0, image.ContentLength);
+                    image.InputStream.Read(photo.PhotoFile
+                        ,0
+                        , image.ContentLength);
                 }
                 _context.Add<Photo>(photo);
                 _context.SaveChanges();
@@ -145,7 +147,9 @@ namespace PhotoSharingApplication.Controllers
         }
 
 
+        //store and retrieve values in the session state
         //return a slideshow view that is populated with the favorite photos
+        #region
         public ActionResult FavoritesSlideShow()
         {
             List<Photo> favPhotos = new List<Photo>();
@@ -167,5 +171,25 @@ namespace PhotoSharingApplication.Controllers
 
             return View("Slideshow", favPhotos);
         }
+
+
+        //retrieve value from session state
+        public ContentResult AddFavorite(int PhotoId)
+        {
+            List<int> favoriteIds = Session["Favorites"] as List<int>;
+
+            if (favoriteIds == null)
+            {
+                favoriteIds = new List<int>();
+            }
+
+            favoriteIds.Add(PhotoId);
+
+            return Content("The picture has been added to your favorites"
+                ,"text/plain"
+                ,System.Text.Encoding.Default);
+        }
+
+    #endregion
     }
 }
