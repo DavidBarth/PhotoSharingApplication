@@ -11,7 +11,7 @@ namespace PhotoSharingApplication.Models
         public DbSet<Photo> Photos { get; set; }
         public DbSet<Comment> Comments { get; set; }
 
-        public PhotoSharingContext() : base("PhotoSharingDB") { }
+        //public PhotoSharingContext() : base("PhotoSharingDB") { }
 
         IQueryable<Photo> IPhotoSharingContext.Photos
         {
